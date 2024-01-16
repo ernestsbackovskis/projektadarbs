@@ -7,14 +7,14 @@ import datetime
 from openpyxl import Workbook, load_workbook
 
 todays = datetime.date.today()
-user="ernestiks131@gmail.com"
-passw="hrxe eezk zlln rynu"
+user="jūsu.epasts@gmail.com"
+passw="Drosha_parole123"
 imap_url ="imap.gmail.com"
 key = 'FROM'
-value = 'ernestiks131@gmail.com'
+value = 'priekšnieka_e-pasts@gmail.com'
 key2="SUBJECT"
 value2=("Inventerizacija"+str(todays))
-attach_dir= 'D:/Python/Lietojumprogrammaturasariks/projekta_darbs/Lejup/'
+attach_dir= 'c:/mape/saglabāt/failu'
 
 def get_attach(msg):
     for part in msg.walk():
@@ -29,7 +29,7 @@ def get_attach(msg):
             with open(filePath,'wb') as f:
                 f.write(part.get_payload(decode=True))
 
-
+#funkcija, kas ļauj izvadīt terminālā e-pasta tekstu
 def get_body(msg):
     if msg.is_multipart():
         return get_body(msg.get_payload(0))
@@ -103,11 +103,11 @@ gmail_server= "smtp.gmail.com"
 gmail_port= 587
 
 msg=MIMEMultipart()
-msg["From"]="ernestiks131@gmail.com"
-msg["To"]="ernestiks131@gmail.com"
+msg["From"]="jusuepasts@gmail.com"
+msg["To"]="priekšniekaepasts@gmail.com"
 msg["Subject"]=("Inventerizacijasatskaite"+str(todays))
 
-body="Te ir atskaite par datoriem, kas ir jāutilizē. \n Ar cieņu, \n Ernests Bačkovskis"
+body="Te ir atskaite par datoriem, kas ir jāutilizē. \n Ar cieņu,"
 msg.attach(MIMEText(body,'plain'))
 
 attachment = open(sfil,'rb')
@@ -124,5 +124,5 @@ my_server.login(user,passw)
 
 
 
-my_server.sendmail("ernestiks131@gmail.com","ernestiks131@gmail.com",text)
+my_server.sendmail("jusuepasts@gmail.com","priekšnieka@gmail.com",text)
 my_server.quit()
